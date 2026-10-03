@@ -1,0 +1,81 @@
+<view class="page">
+  <view class="eyebrow">TRAINING LOG</view>
+  <view class="heading">历史记录</view>
+
+  <view class="view-tabs">
+    <button class="view-tab {{view === 'calendar' ? 'selected' : ''}}" data-view="calendar" bindtap="switchView">日历</button>
+    <button class="view-tab {{view === 'month' ? 'selected' : ''}}" data-view="month" bindtap="switchView">月度</button>
+    <button class="view-tab {{view === 'year' ? 'selected' : ''}}" data-view="year" bindtap="switchView">年度</button>
+  </view>
+
+  <view wx:if="{{view !== 'year'}}" class="panel history-panel">
+    <view class="period-bar">
+      <button class="arrow" aria-label="上个月" bindtap="previous">‹</button>
+      <picker class="period-picker" mode="date" fields="month" value="{{month}}" end="{{todayMonth}}" bindchange="pickMonth">
+        <view class="period-label"><text>{{monthLabel}}</text><text class="period-chevron">▼</text></view>
+      </picker>
+      <button class="arrow" aria-label="下个月" disabled="{{!canNext}}" bindtap="next">›</button>
+    </view>
+    <block wx:if="{{loaded}}">
+      <block wx:if="{{view === 'calendar'}}">
+        <view class="weekdays"><text wx:for="{{['一','二','三','四','五','六','日']}}" wx:key="*this">{{item}}</text></view>
+        <view class="grid">
+          <view wx:for="{{cells}}" wx:key="key" class="day-wrap">
+            <button wx:if="{{!item.empty}}" class="day {{item.date === selected ? 'chosen' : ''}} {{item.future ? 'future' : ''}}"
+              data-date="{{item.date}}" disabled="{{item.future}}" bindtap="selectDay">
+              <text class="day-number">{{item.day}}</text>
+              <view wx:if="{{item.trained}}" class="dot"></view>
+              <view wx:elif="{{item.planned}}" class="dot planned"></view>
+            </button>
+          </view>
+        </view>
+        <view class="legend"><text><text class="key trained"></text>练了</text><text><text class="key planned"></text>有计划</text><text>无标记 · 未记录</text></view>
+      </block>
+      <view wx:else class="chart-content">
+        <view class="chart-heading">各部位训练天数</view>
+        <view class="chart-total">本月训练 {{monthStats.total}} 天</view>
+        <view class="part-chart">
+          <block wx:for="{{monthStats.bars}}" wx:key="label">
+            <text class="part-label">{{item.label}}</text>
+            <view class="part-track"><view class="part-fill {{item.tone}}" style="width: {{item.width}}%;"></view></view>
+            <text class="part-count">{{item.count}}</text>
+          </block>
+        </view>
+      </view>
+    </block>
+    <view wx:elif="{{!error}}" class="empty">正在读取记录...</view>
+  </view>
+
+  <view wx:if="{{view === 'year'}}" class="panel history-panel">
+    <view class="period-bar">
+      <button class="arrow" aria-label="上一年" bindtap="previousYear">‹</button>
+      <picker class="period-picker" mode="date" fields="year" value="{{year}}" end="{{todayYear}}" bindchange="pickYear">
+        <view class="period-label"><text>{{year}}年</text><text class="period-chevron">▼</text></view>
+      </picker>
+      <button class="arrow" aria-label="下一年" disabled="{{!canNextYear}}" bindtap="nextYear">›</button>
+    </view>
+    <view wx:if="{{yearLoading}}" class="empty">正在读取统计...</view>
+    <view wx:elif="{{yearError}}" class="error">{{yearError}}</view>
+    <view wx:else class="chart-content">
+      <view class="chart-heading">每月训练天数</view>
+      <view class="chart-total">全年训练 {{yearStats.total}} 天</view>
+      <view class="year-chart">
+        <view wx:for="{{yearStats.bars}}" wx:key="month" class="year-column">
+          <text class="year-count">{{item.count}}</text>
+          <view class="year-bar-area"><view class="year-bar" style="height: {{item.height}}rpx;"></view></view>
+          <text class="year-month">{{item.month}}</text>
+        </view>
+      </view>
+      <view class="year-axis">月份</view>
+    </view>
+    <button wx:if="{{yearError}}" class="button-plain retry" bindtap="retryYear">重试</button>
+  </view>
+
+  <view wx:if="{{view !== 'year' && error}}" class="error">{{error}}</view>
+  <button wx:if="{{view !== 'year' && error && !loaded}}" class="button-plain retry" bindtap="retry">重试</button>
+  <view wx:if="{{view === 'calendar' && loaded}}" class="panel detail">
+    <view class="detail-date">{{selected}}</view>
+    <view class="detail-plan"><text>当日计划</text><text>{{selectedPlanSummary}}</text></view>
+    <record-form date="{{selected}}" record="{{record}}" part-options="{{partOptions}}" busy="{{busy}}" bind:save="save" bind:remove="remove" />
+  </view>
+</view>

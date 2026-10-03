@@ -1,0 +1,16 @@
+page { background: #f7f8f6; color: #202a27; font-size: 30rpx; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; }
+button { font-size: 28rpx; }
+button::after { border: 0; }
+.page { padding: 42rpx 34rpx 68rpx; }
+.eyebrow { color: #64716c; font-size: 24rpx; font-weight: 600; }
+.heading { margin-top: 10rpx; font-size: 52rpx; font-weight: 700; }
+.subheading { color: #64716c; font-size: 26rpx; margin-top: 12rpx; }
+.section-title { font-size: 30rpx; font-weight: 700; }
+.panel { background: #fff; border: 1rpx solid #e5eae6; border-radius: 14rpx; padding: 32rpx; margin-top: 32rpx; }
+.muted { color: #64716c; font-size: 27rpx; }
+.error { color: #ab4935; font-size: 26rpx; line-height: 1.5; margin-top: 18rpx; }
+.empty { padding: 40rpx 8rpx; color: #64716c; font-size: 27rpx; text-align: center; }
+.button-primary { background: #176b55; color: #fff; border-radius: 10rpx; font-weight: 600; }
+.button-primary[disabled] { background: #94afa5; color: #fff; }
+.button-plain { background: #f0f4f1; color: #176b55; border-radius: 10rpx; }
+.button-primary, .button-plain { display: flex; align-items: center; justify-content: center; box-sizing: border-box; line-height: 1.2; }

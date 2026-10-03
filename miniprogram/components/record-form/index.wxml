@@ -1,0 +1,15 @@
+<view class="form">
+  <view class="section-title">当天状态</view>
+  <view class="modes">
+    <button class="mode {{trained ? 'active' : ''}}" bindtap="chooseTrained">练了</button>
+  </view>
+  <view wx:if="{{trained}}" class="part-section">
+    <view class="section-title">训练部位 <text class="hint">可多选</text></view>
+    <view class="parts">
+      <view wx:for="{{parts}}" wx:key="label" class="part {{item.selected ? 'selected' : ''}} {{item.legacy ? 'legacy' : ''}}"
+        aria-role="checkbox" aria-checked="{{item.selected}}" data-part="{{item.label}}" bindtap="togglePart">{{item.label}}</view>
+    </view>
+  </view>
+  <button wx:if="{{trained}}" class="button-primary save {{busy ? 'is-disabled' : ''}}" disabled="{{busy}}" bindtap="save">{{busy ? '保存中...' : '保存记录'}}</button>
+  <button wx:if="{{record}}" class="remove" disabled="{{busy}}" bindtap="remove">删除这天的记录</button>
+</view>

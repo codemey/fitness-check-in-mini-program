@@ -1,0 +1,21 @@
+.status { margin-top: 18rpx; color: #176b55; font-size: 27rpx; }
+.id-label { margin-top: 28rpx; font-size: 23rpx; color: #64716c; }
+.openid { margin-top: 8rpx; font-size: 25rpx; word-break: break-all; user-select: text; }
+.notice { line-height: 1.6; margin-top: 16rpx; }
+.parts-note { margin-top: 10rpx; color: #7b8882; font-size: 22rpx; }
+.part-edit-row { display: flex; align-items: center; gap: 12rpx; margin-top: 14rpx; position: relative; }
+.part-edit-row.dragging { z-index: 2; opacity: 0.9; }
+.part-edit-row.drop-target { outline: 2rpx solid #176b55; border-radius: 8rpx; }
+.part-edit-input { flex: 1; min-width: 0; height: 72rpx; padding: 0 18rpx; box-sizing: border-box; border: 1rpx solid #dce5df; border-radius: 8rpx; background: #f9fbf9; font-size: 27rpx; }
+.part-handle, .part-remove { flex: 0 0 64rpx; width: 64rpx; height: 72rpx; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; box-sizing: border-box; line-height: 1; border-radius: 8rpx; background: #f2f4f2; color: #64716c; }
+.part-handle { font-size: 32rpx; touch-action: none; }
+.part-remove { font-size: 38rpx; }
+.part-actions { display: flex; gap: 16rpx; margin-top: 22rpx; }
+.part-add { flex: 0 0 80rpx; width: 80rpx; height: 80rpx; margin: 0; padding: 0; font-size: 38rpx; }
+.part-save { flex: 1; min-width: 0; height: 80rpx; margin: 0; }
+.refresh, .export { margin-top: 28rpx; min-height: 80rpx; }
+.backup-divider { height: 1rpx; margin: 36rpx 0; background: #e5eae6; }
+.backup-input { width: 100%; height: 220rpx; margin-top: 22rpx; padding: 18rpx; box-sizing: border-box; border: 1rpx solid #dce5df; border-radius: 8rpx; background: #f9fbf9; color: #202a27; font-size: 24rpx; }
+.import-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16rpx; margin-top: 20rpx; }
+.paste, .import { min-width: 0; height: 80rpx; margin: 0; padding: 0 8rpx; font-size: 25rpx; }
+.progress { margin-top: 20rpx; color: #64716c; font-size: 24rpx; }

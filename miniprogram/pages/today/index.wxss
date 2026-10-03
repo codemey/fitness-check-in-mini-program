@@ -1,0 +1,6 @@
+.retry { margin-top: 24rpx; }
+.today-plan { display: flex; align-items: center; gap: 16rpx; margin-top: 28rpx; padding-bottom: 24rpx; border-bottom: 1rpx solid #dce5df; }
+.today-plan-copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6rpx; }
+.today-plan-label { font-size: 23rpx; color: #64716c; }
+.today-plan-parts { font-size: 27rpx; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.today-plan-action { flex: 0 0 110rpx; width: 110rpx; height: 64rpx; margin: 0; padding: 0; font-size: 24rpx; }

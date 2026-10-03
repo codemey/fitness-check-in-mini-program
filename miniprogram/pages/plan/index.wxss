@@ -1,0 +1,15 @@
+.plan-panel { margin-top: 32rpx; }
+.weekday-block { border-bottom: 1rpx solid #e5eae6; }
+.weekday-row { width: 100%; min-height: 90rpx; margin: 0; padding: 0; display: flex; align-items: center; gap: 16rpx; background: transparent; text-align: left; color: #202a27; box-sizing: border-box; }
+.weekday-name { flex: 0 0 74rpx; font-size: 27rpx; font-weight: 700; }
+.weekday-summary { flex: 1; min-width: 0; padding: 16rpx 0; font-size: 25rpx; color: #64716c; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.weekday-chevron { flex: 0 0 20rpx; text-align: right; font-size: 32rpx; color: #64716c; }
+.day-editor { padding: 0 0 24rpx 90rpx; }
+.day-options { display: flex; flex-wrap: wrap; gap: 12rpx; }
+.day-option { flex: 0 0 auto; min-width: 102rpx; max-width: 100%; height: 68rpx; padding: 0 18rpx; display: flex; align-items: center; justify-content: center; box-sizing: border-box; border: 2rpx solid #dce5df; border-radius: 8rpx; background: #fff; color: #40514a; font-size: 24rpx; font-weight: 600; white-space: nowrap; }
+.day-option.selected { background: #176b55; border-color: #176b55; color: #fff; }
+.day-option.legacy { border-style: dashed; }
+.rest-action { width: auto; height: 56rpx; margin: 16rpx 0 0; padding: 0 12rpx; background: transparent; color: #64716c; font-size: 23rpx; line-height: 56rpx; text-align: left; }
+.plan-note { margin-top: 28rpx; color: #64716c; font-size: 22rpx; line-height: 1.5; }
+.plan-save { width: 380rpx; max-width: 100%; height: 86rpx; margin: 24rpx auto 0; font-size: 28rpx; }
+.plan-retry { width: 180rpx; height: 64rpx; margin: 24rpx 0 0; }

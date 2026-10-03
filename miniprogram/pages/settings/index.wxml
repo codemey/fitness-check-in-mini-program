@@ -1,0 +1,49 @@
+<view class="page">
+  <view class="eyebrow">ACCOUNT & DATA</view>
+  <view class="heading">设置</view>
+  <view class="panel">
+    <view class="section-title">云端账号</view>
+    <view class="status">{{loading ? '正在连接...' : (bound ? '已绑定当前微信账号' : '尚未绑定允许使用的账号')}}</view>
+    <view wx:if="{{openid}}" class="id-label">你的 OpenID</view>
+    <view wx:if="{{openid}}" class="openid" selectable="true">{{openid}}</view>
+    <view wx:if="{{openid && !bound}}" class="muted notice">请把上方 OpenID 填到云函数的 OWNER_OPENID 环境变量，然后重新部署云函数。</view>
+    <button class="button-plain refresh" disabled="{{loading}}" bindtap="refresh">刷新状态</button>
+  </view>
+  <view class="panel">
+    <view class="section-title">训练部位</view>
+    <view class="parts-note">更新训练部位不会影响历史记录</view>
+    <view wx:if="{{bound && !loading}}">
+      <view wx:for="{{partDraft}}" wx:key="id"
+        class="part-edit-row {{draggingPartId === item.id ? 'dragging' : ''}} {{dropIndex === index && draggingPartId !== item.id ? 'drop-target' : ''}}"
+        style="{{draggingPartId === item.id ? dragStyle : ''}}">
+        <input class="part-edit-input" value="{{item.label}}" maxlength="8" placeholder="部位名称"
+          data-index="{{index}}" disabled="{{savingParts}}" bindinput="editPart" />
+        <view class="part-handle" aria-label="拖动排序" data-id="{{item.id}}"
+          catchtouchstart="startPartDrag" catchtouchmove="movePartDrag"
+          catchtouchend="endPartDrag" catchtouchcancel="endPartDrag">☰</view>
+        <button class="part-remove" aria-label="删除部位" data-id="{{item.id}}"
+          disabled="{{savingParts}}" bindtap="removePart">×</button>
+      </view>
+      <view class="part-actions">
+        <button class="button-plain part-add" aria-label="添加部位"
+          disabled="{{partDraft.length >= 12 || savingParts}}" bindtap="addPart">+</button>
+        <button class="button-primary part-save" disabled="{{!partsDirty || savingParts}}"
+          bindtap="saveParts">{{savingParts ? '保存中...' : '保存部位'}}</button>
+      </view>
+    </view>
+  </view>
+  <view class="panel">
+    <view class="section-title">数据备份</view>
+    <button class="button-primary export" disabled="{{!bound || exporting}}" bindtap="exportRecords">{{exporting ? '正在导出...' : '复制全部数据'}}</button>
+    <view class="backup-divider"></view>
+    <view class="section-title">导入备份</view>
+    <textarea class="backup-input" value="{{importText}}" maxlength="-1" placeholder="粘贴备份 JSON" disabled="{{importing}}" bindinput="onImportInput" />
+    <view class="import-actions">
+      <button class="button-plain paste" disabled="{{importing}}" bindtap="pasteBackup">读取剪贴板</button>
+      <button class="button-primary import" disabled="{{!bound || importing || !hasImportText}}" bindtap="importRecords">导入记录</button>
+    </view>
+    <view wx:if="{{importing}}" class="progress">已导入 {{importedCount}} / {{importTotal}} 条</view>
+    <view wx:if="{{importResult}}" class="status">{{importResult}}</view>
+  </view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+</view>

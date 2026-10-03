@@ -1,0 +1,18 @@
+<view class="page">
+  <view class="eyebrow">{{date}}</view>
+  <view class="heading">今天练了吗？</view>
+  <view wx:if="{{loaded}}" class="subheading">{{record ? '今天已记录训练' : '今天未记录'}}</view>
+  <view wx:if="{{loaded}}" class="today-plan">
+    <view class="today-plan-copy"><text class="today-plan-label">今日计划</text><text class="today-plan-parts">{{planSummary}}</text></view>
+    <button wx:if="{{planParts.length}}" class="button-plain today-plan-action" bindtap="applyPlan">填入</button>
+    <button wx:else class="button-plain today-plan-action" bindtap="openPlan">编辑</button>
+  </view>
+  <view wx:if="{{loaded}}" class="panel">
+    <record-form id="today-form" date="{{date}}" record="{{record}}" part-options="{{partOptions}}" busy="{{busy}}" bind:save="save" bind:remove="remove" />
+  </view>
+  <view wx:elif="{{!error}}" class="empty">正在读取记录...</view>
+  <view wx:if="{{error}}" class="panel">
+    <view class="error">{{error}}</view>
+    <button class="button-plain retry" bindtap="retry">重试</button>
+  </view>
+</view>

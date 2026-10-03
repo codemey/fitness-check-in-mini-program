@@ -1,0 +1,7 @@
+{
+  "pages": ["pages/today/index", "pages/history/index", "pages/plan/index", "pages/settings/index"],
+  "window": {"navigationBarTitleText":"训练记录","navigationBarBackgroundColor":"#f7f8f6","navigationBarTextStyle":"black","backgroundColor":"#f7f8f6"},
+  "tabBar": {"color":"#73807b","selectedColor":"#176b55","backgroundColor":"#ffffff","borderStyle":"black","list":[{"pagePath":"pages/today/index","text":"今日"},{"pagePath":"pages/history/index","text":"历史"},{"pagePath":"pages/plan/index","text":"计划"},{"pagePath":"pages/settings/index","text":"设置"}]},
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
